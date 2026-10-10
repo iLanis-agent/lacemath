@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lace math - calculators</title>
+<style>
+  :root { --accent: #107070; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #f7f4ef; color: #241f1c; line-height: 1.55; }
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 64px; }
+  h1 { font-size: 2rem; margin: 0 0 8px; color: var(--accent); }
+  .lede { margin: 0 0 28px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  section { background: #fff; border: 1px solid #e4dcd2; border-radius: 8px; padding: 20px 22px; }
+  h2 { font-size: 1.15rem; margin: 0 0 6px; }
+  .hint { font-size: 0.9rem; color: #6e635a; margin: 0 0 14px; }
+  label { display: block; font-size: 0.9rem; margin: 10px 0 3px; }
+  input { width: 100%; padding: 8px 10px; font-size: 1rem; border: 1px solid #cfc4b8; border-radius: 5px; font-family: inherit; }
+  button { margin-top: 16px; width: 100%; padding: 11px; background: var(--accent); color: #fff; border: 0; border-radius: 6px; font-size: 1rem; cursor: pointer; font-family: inherit; }
+  button:hover { filter: brightness(1.12); }
+  .out { margin-top: 14px; font-size: 1rem; min-height: 1.4em; }
+  .out.err { color: #a32222; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; font-size: 0.85rem; color: #8a7f76; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lace math</h1>
+  <p class="lede">Count the eyelets, walk the criss-cross, pick the size. Exact arithmetic, every borrowed number labeled.</p>
+  <div class="grid">
+    <section>
+      <h2>Lace length</h2>
+      <p class="hint">Eyelets and gaps become the criss-cross length with tie allowance.</p>
+      <label for="l-p">Eyelet pairs</label>
+      <input id="l-p" type="number" value="6" min="0" step="1">
+      <label for="l-h">Gap across (cm)</label>
+      <input id="l-h" type="number" value="4.5" min="0" step="0.5">
+      <label for="l-v">Gap between rows (cm)</label>
+      <input id="l-v" type="number" value="2.5" min="0" step="0.5">
+      <label for="l-t">Tie allowance per end (cm)</label>
+      <input id="l-t" type="number" value="15" min="0" step="1">
+      <button id="l-go">Measure the lace</button>
+      <div class="out" id="l-out"></div>
+    </section>
+    <section>
+      <h2>Size pick</h2>
+      <p class="hint">A measured length rounds up to a labeled standard lace size.</p>
+      <label for="s-l">Needed length (cm)</label>
+      <input id="s-l" type="number" value="86" min="0" step="1">
+      <button id="s-go">Pick the size</button>
+      <div class="out" id="s-out"></div>
+    </section>
+    <section>
+      <h2>Quick pick</h2>
+      <p class="hint">An EU shoe size becomes a labeled eyelet estimate and a lace to grab.</p>
+      <label for="q-e">EU shoe size</label>
+      <input id="q-e" type="number" value="42" min="0" step="1">
+      <button id="q-go">Grab a lace</button>
+      <div class="out" id="q-out"></div>
+    </section>
+  </div>
+</main>
+<footer>Built by the app factory. <a href="index.html">About</a> &middot; <a href="https://github.com/iLanis-agent/lacemath">Source</a></footer>
+<script src="engine.js"></script>
+<script>
+function num(id){ return parseFloat(document.getElementById(id).value); }
+function show(id, r, render){
+  var el = document.getElementById(id);
+  if (r.error) { el.textContent = r.error; el.classList.add('err'); }
+  else { el.textContent = render(r); el.classList.remove('err'); }
+}
+document.getElementById('l-go').addEventListener('click', function(){
+  show('l-out', LaceMath.lacePlan(num('l-p'),num('l-h'),num('l-v'),num('l-t')), LaceMath.renderLace);
+});
+document.getElementById('s-go').addEventListener('click', function(){
+  show('s-out', LaceMath.sizePick(num('s-l')), LaceMath.renderSize);
+});
+document.getElementById('q-go').addEventListener('click', function(){
+  show('q-out', LaceMath.quickPlan(num('q-e')), LaceMath.renderQuick);
+});
+</script>
+</body>
+</html>
