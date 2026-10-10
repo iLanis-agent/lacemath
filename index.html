@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lace math - shoelace length, picked honestly</title>
+<style>
+  :root { --accent: #107070; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #f7f4ef; color: #241f1c; line-height: 1.55; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-size: 2.4rem; margin: 0 0 12px; color: var(--accent); }
+  h2 { font-size: 1.25rem; margin: 40px 0 12px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent); }
+  .cta { display: inline-block; margin: 10px 0 8px; padding: 12px 22px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px; font-size: 1.05rem; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .norms { background: #fff; border: 1px solid #e4dcd2; border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 18px; margin-top: 12px; }
+  footer { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; font-size: 0.85rem; color: #8a7f76; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lace math</h1>
+  <p>The lace snaps on a Monday morning, and the replacement rack is a wall of centimeter numbers with no logic on it. Lace math counts the eyelets, walks the criss-cross, and tells you the length your shoes actually need - then picks the standard size to buy. Exact arithmetic, every borrowed number labeled.</p>
+  <a class="cta" href="app.html">Open the calculators</a>
+  <h2>The three tools</h2>
+  <ul>
+    <li><strong>Lace length</strong> - eyelet pairs, the gap across and between rows, and tie allowance become the criss-cross length.</li>
+    <li><strong>Size pick</strong> - any measured length rounds up to a labeled standard lace size, with the spare counted.</li>
+    <li><strong>Quick pick</strong> - an EU shoe size becomes a labeled eyelet-pair estimate and a lace to grab off the rack.</li>
+  </ul>
+  <h2>Labeled norms</h2>
+  <div class="norms">
+    The model: criss-cross lacing is the bottom rung plus two diagonals per extra row, plus the tie allowance at each end. Labeled illustrative typicals: about 4.5 cm between eyelet columns, about 2.5 cm between rows, and 15 cm per end to tie. Labeled standard lace sizes: 60, 75, 90, 100, 120, 140, 160, 180, 200 cm - always round up. Labeled illustrative norm for the quick pick: about 4 to 8 eyelet pairs across EU sizes. These are reference values, not rules - measure your own shoe when it matters.
+  </div>
+</main>
+<footer>Built by the app factory. <a href="https://github.com/iLanis-agent/lacemath">Source on GitHub</a></footer>
+</body>
+</html>
